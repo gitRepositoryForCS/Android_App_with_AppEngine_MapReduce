@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    //compileSdkVersion 21
+    // buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "yingchen.musicplayer"
+        minSdkVersion 16
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //compile 'com.android.support:appcompat-v7:23.1.1'
+    // compile 'com.android.support:recyclerview-v7:23.1.1'
+    // compile 'com.android.support:appcompat-v7:24.0.0-beta1'
+    // compile 'com.android.support:recyclerview-v7:24.0.0-beta1'77
+        compile 'com.android.support:appcompat-v7:21.0.3'
+     compile 'com.android.support:recyclerview-v7:21.0+'
+    // compile 'org.scala-saddle:jhdf5:2.9'
+    // compile files('/Users/yingchen/Documents/2.22.2015/CIS690_Proposal.pdf/backend/build/libs/jhdf5-2.9.jar')
+    compile files('libs/jhdf5-2.9.jar')
+    //compile files('/Users/yingchen/Documents/aaa_report/hdf-java-2.11.0/lib/*.jar')
+    //compile files('/Users/yingchen/Documents/aaa_report/hdf-java-2.11.0/lib/ext/*.jar')
+    // compile files('libs/*.jar')
+    //compile files('libs/jhdf5-2.9-sources.jar')
+    compile 'com.google.android.gms:play-services-appindexing:9.0.1'
+    compile 'com.firebase:firebase-client-android:2.3.1'
+    compile 'com.google.firebase:firebase-storage:9.0.1'
+    compile 'com.google.firebase:firebase-auth:9.0.1'
+    //compile 'com.android.support:recyclerview-v7:24.0.0-beta1'
+    //compile 'com.android.support:appcompat-v7:24.0.0-beta1'
+    compile 'com.android.support:multidex:1.0.0'
+}
+apply plugin: 'com.google.gms.google-services'

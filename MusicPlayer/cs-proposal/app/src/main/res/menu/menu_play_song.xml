@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="yingchen.musicplayer.PlaySongActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item
+        android:id="@+id/circle"
+        android:orderInCategory="1"
+        android:title="circle"/>
+
+    <item
+        android:id="@+id/bar"
+        android:orderInCategory="2"
+        android:title="bar"/>
+    <item
+        android:id="@+id/circlebar"
+        android:orderInCategory="2"
+        android:title="circle Bar"/>
+
+</menu>

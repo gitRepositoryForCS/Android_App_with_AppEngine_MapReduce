@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+
+    <servlet>
+        <servlet-name>mapreduce</servlet-name>
+        <servlet-class>
+            com.google.appengine.tools.mapreduce.MapReduceServlet
+        </servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mapreduce</servlet-name>
+        <url-pattern>/mapreduce/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PipelineServlet</servlet-name>
+        <servlet-class>com.google.appengine.tools.pipeline.impl.servlets.PipelineServlet</servlet-class>
+    </servlet>
+
+        <servlet>
+            <servlet-name>MyServlet</servlet-name>
+            <servlet-class>MyServlet</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name>MyServlet</servlet-name>
+            <url-pattern>/hello</url-pattern>
+        </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PipelineServlet</servlet-name>
+        <url-pattern>/_ah/pipeline/*</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
