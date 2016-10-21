@@ -9,5 +9,5 @@ Design concepts on UI color schema from Material Design are incorporated as well
 [[https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/expresso_test.gif|alt=octocat]]
 
 
-![alt tag](https://raw.githubusercontent.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/expresso_test.gif)
+![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/expresso_test.gif)
 
