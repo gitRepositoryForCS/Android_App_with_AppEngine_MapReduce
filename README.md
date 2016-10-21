@@ -6,8 +6,6 @@ The music player application with visualizations is designed, implemented, and t
 
 Design concepts on UI color schema from Material Design are incorporated as well as new components and functionality available in Android 5.0 and above.
 
-[[https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/expresso_test.gif|alt=octocat]]
-
 
 ![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/blob/master/expresso_test.gif)
 
