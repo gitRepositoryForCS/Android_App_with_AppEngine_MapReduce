@@ -6,7 +6,7 @@ The major work backend server does is to provide recommendation data for the app
 
 (Support Android 4-7, API level 18-24)
 
-To run the whole project, there are several accounts needed: <br />
+To run the whole project, there are several accounts needed: 
 - project in app engine <br />
 - project in firebase   <br />
 - bucket in google cloud storage  <br />
@@ -24,5 +24,7 @@ Testing:
 The following gif shows the test recording of user sign-in and sign-out using Espresso.
 ![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/blob/master/espressor_signIn_signOut_test.gif)
 
-The following gif shows the test recording of submitting comments and deleting comments using Espresso.
+The following gif shows the test recording of submitting and deleting comments using Espresso.
+By clicking the submit button, user's comment is stored locally, and also sent to Firebase. 
+By long clicking on a submitted comment, the comment will be deleted both on Firebase and Android app. 
 ![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/blob/master/espresso_comment_test.gif)
