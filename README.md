@@ -4,7 +4,7 @@ The music player application with visualizations is designed, implemented, and t
 
 The major work backend server does is to provide recommendation data for the app. It uses chaining mapreduce jobs to filter large data and save it on cloud storage. Android app clients get the data through http requests. 
 
-(Support Android versions from Jelly Bean to Nougat, API level 18-24)
+(Support Android 4-7, API level 18-24)
 
 To run the whole project, there are several accounts needed: <br />
 -project in app engine <br />
