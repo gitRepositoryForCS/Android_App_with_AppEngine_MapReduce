@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#DADADA"
+    tools:context="yingchen.cs.musicplayer.NavigationDrawerFragment">
+
+    <!-- the header picture -->
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/songIcon"
+            android:layout_width="match_parent"
+            android:layout_height="117dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/play_img_default" />
+    </RelativeLayout>
+
+    <!-- the list of choices user can click -->
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relativeLayout"
+        android:background="#fff"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+        <!-- user sign in button-->
+        <RelativeLayout
+            android:id="@+id/signInLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/recyclerView"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="40dp"
+            android:orientation="vertical">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!--display sign in info, sucesss or fail.    -->
+    <RelativeLayout
+        android:id="@+id/sign_in_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="     " />
+    </RelativeLayout>
+</RelativeLayout>
+
+    <!--<TextView
+                android:id="@+id/textView"
+                android:layout_below="@id/songIcon"
+                android:layout_marginTop="24dp"
+                android:layout_width="280dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="16dp"
+                android:background="#999"/>
+                android:background="#FB8C00"
+                  android:layout_below="@id/relativeLayout"
+   -->
+    <!--
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </ListView>
+
+              android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+    -->
+

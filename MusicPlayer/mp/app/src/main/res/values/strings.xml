@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MusicPlayer</string>
+    <string name="title_activity_main">Listening</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_song_list">SongList</string>
+    <string name="title_activity_songs_list">SongsList</string>
+    <string name="title_activity_play_song">PlaySongActivity</string>
+    <string name="server_client_id">your server client id</string>
+    <string name="submit">Submit comment</string>
+    <string name="test_comment">this is a fun app.</string>
+    <string name="sign_out">sign out</string>
+</resources>

@@ -1,0 +1,48 @@
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        tools:context="yingchen.cs.musicplayer.MainActivity"
+        android:layout_height="match_parent">
+
+        <!-- app bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar" />
+        </LinearLayout>
+
+        <!-- songs/album/artist list  -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/song_list_container"
+            android:background="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+           <include
+              android:id="@+id/music_list"
+              layout="@layout/music_list" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- navigation drawer -->
+    <fragment
+        android:id="@+id/fragment_navigation_drawer"
+        android:name="yingchen.cs.musicplayer.NavigationDrawerFragment"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:layout="@layout/fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer" />
+</android.support.v4.widget.DrawerLayout>
+
