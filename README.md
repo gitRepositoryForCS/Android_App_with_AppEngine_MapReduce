@@ -17,6 +17,7 @@ https://developers.google.com/android/guides/client-auth
 
 
 The following gif shows how the visualizer is like when playing an audio file.
+
 ![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/blob/master/visualizer.gif)
 
 Testing:
