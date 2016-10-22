@@ -6,14 +6,14 @@ The major work backend server does is to provide recommendation data for the app
 
 (Support Android versions from Jelly Bean to Nougat, API level 18-24)
 
-To run the whole project, there are several accounts needed: 
--project in app engine
--project in firebase
--bucket in google cloud storage
-- follow the link below to get a configuration file and put it in the folder ../musicPlayer/mp/app 
-https://developers.google.com/identity/sign-in/android/start-integrating
--follow the link below to get SHA-1 of your app signing certificate
-https://developers.google.com/android/guides/client-auth
+To run the whole project, there are several accounts needed: \r\n
+-project in app engine  \r\n
+-project in firebase   \r\n
+-bucket in google cloud storage   \r\n
+- follow the link below to get a configuration file and put it in the folder ../musicPlayer/mp/app   \r\n
+https://developers.google.com/identity/sign-in/android/start-integrating    \r\n
+-follow the link below to get SHA-1 of your app signing certificate    \r\n
+https://developers.google.com/android/guides/client-auth      \r\n
 
 
 The following gif shows how the visualizer is like when playing an audio file.
