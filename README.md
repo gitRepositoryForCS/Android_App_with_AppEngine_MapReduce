@@ -26,5 +26,5 @@ The following gif shows the test recording of user sign-in and sign-out using Es
 
 The following gif shows the test recording of submitting and deleting comments using Espresso.
 By clicking the submit button, user's comment is stored locally, and also sent to Firebase. 
-By long clicking on a submitted comment, the comment will be deleted both on Firebase and Android app. 
+By long clicking on a submitted comment, the comment will be deleted both on Firebase and Android app. <br />
 ![alt tag](https://github.com/yingchenyingchen/Android_App_with_Appengine_MapReduce/blob/master/espresso_comment_test.gif)
