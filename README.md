@@ -7,6 +7,7 @@ The major work backend server does is to provide recommendation data for the app
 (Support Android 4-7, API level 18-24)
 
 To run the whole project, there are several accounts needed: 
+- google account <br />
 - project in app engine <br />
 - project in firebase   <br />
 - bucket in google cloud storage  <br />
@@ -14,6 +15,7 @@ To run the whole project, there are several accounts needed:
 https://developers.google.com/identity/sign-in/android/start-integrating    <br />
 - follow the link below to get SHA-1 of your app signing certificate    <br />
 https://developers.google.com/android/guides/client-auth     <br />
+- OAuth 2.0 web client ID <br />
 
 
 The following gif shows how the visualizer is like when playing an audio file. 
