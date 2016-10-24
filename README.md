@@ -10,7 +10,8 @@ To run the whole project, there are several accounts needed:
 - google account <br />
 - project in app engine <br />
 - project in firebase   <br />
-- bucket in google cloud storage  <br />
+- create a bucket in google cloud storage (hosting input and output files)  <br />
+https://cloud.google.com/appengine/docs/java/googlecloudstorageclient/setting-up-cloud-storage#setting_up_your_project
 - follow the link below to get a configuration file and put it in the folder ../musicPlayer/mp/app  <br />
 https://developers.google.com/identity/sign-in/android/start-integrating    <br />
 - follow the link below to get SHA-1 of your app signing certificate    <br />
