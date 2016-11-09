@@ -92,7 +92,10 @@ public class Test_Sign_In_Button {
 
     @Test
     public void signInButtonInNaviDrawerTest() {
-        signIn(0);
-        signIn(2);
+        signIn(0);   // use index 0 to choose the first account in the chooser dialogue. 
+        signIn(1);  // it seems that UiSelector().instance() is not quite reliable. 
+                    // use index 1 won't make it choose the second account.
+                    // but use index 2 will cause index out of range exception. 
+                    // UiSelector().index() also does not work.
     }
 }
