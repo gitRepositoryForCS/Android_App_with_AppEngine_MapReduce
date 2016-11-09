@@ -8,12 +8,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
 
 
 /**
@@ -24,24 +24,33 @@ import java.io.UnsupportedEncodingException;
 
 public class FetchData extends AsyncTask<String, Void, String> {
 
-
     private String result;
     private RunAfterExecute mRunAfterExecute;
     private int mPositionInNavigation;
-    private static final  HttpGet HTTP_GET = new HttpGet("https://plasma-system-145121.appspot.com/hello");
+    private static final HttpGet HTTP_GET = new HttpGet("https://plasma-system-145121.appspot.com/hello");
+    private String TEST_FILE_PATH = "src/test/resources/mapReduce_output.txt";
+    private HttpResponse mHttpResponse;
 
     public FetchData(RunAfterExecute runAfterExecute, int positionInNavigation){
         mRunAfterExecute = runAfterExecute;
         mPositionInNavigation = positionInNavigation;
     }
 
+    public HttpResponse getHttpResponse(){
+        return mHttpResponse;
+    }
     @Override
     protected String doInBackground(String... params) {
         String output = null;
         try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpResponse httpResponse = httpClient.execute(HTTP_GET);
-            HttpEntity httpEntity = httpResponse.getEntity();
+            mHttpResponse = httpClient.execute(HTTP_GET);
+            HttpEntity httpEntity = mHttpResponse.getEntity();
             output = EntityUtils.toString(httpEntity);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -64,56 +73,9 @@ public class FetchData extends AsyncTask<String, Void, String> {
         return result;
     }
 
+
     public static interface RunAfterExecute {
         public void onPost(int positionInNavi, String res);
     }
 
 }
-
-
-   /*
-    @Override
-    protected String doInBackground(String... urls) {
-        String output = null;
-        for (String url : urls) {
-            output = getOutputFromUrl(url);
-        }
-        return output;
-    }
-
-    private String getOutputFromUrl(String url) {
-        StringBuffer output = new StringBuffer("");
-        try {
-            InputStream stream = getHttpConnection(url);
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(stream));
-            String s = "";
-            while ((s = buffer.readLine()) != null)
-                output.append(s);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        return output.toString();
-    }
-
-    // Makes HttpURLConnection and returns InputStream
-    private InputStream getHttpConnection(String urlString)
-            throws IOException {
-        InputStream stream = null;
-        URL url = new URL(urlString);
-        URLConnection connection = url.openConnection();
-
-        try {
-            HttpURLConnection httpConnection = (HttpURLConnection) connection;
-            httpConnection.setRequestMethod("GET");
-
-            httpConnection.connect();
-
-            if (httpConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                stream = httpConnection.getInputStream();
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return stream;
-    }
-    */

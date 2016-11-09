@@ -21,10 +21,10 @@ public class Test_getBucket_In_Cloud_Storage {
     public static void testGetBucket() throws IOException, GeneralSecurityException {
         Storage client = StorageFactory.getService();
 
-        Storage.Buckets.Get bucketRequest = client.buckets().get(Constants.BUCKETNAME);
+        Storage.Buckets.Get bucketRequest = client.buckets().get(Test_Constants.BUCKETNAME);
         bucketRequest.setProjection("full");
         Bucket bucket = bucketRequest.execute();
-        assertThat(Constants.BUCKETNAME, is(bucket.getName()));
+        assertThat(Test_Constants.BUCKETNAME, is(bucket.getName()));
     }
 
 

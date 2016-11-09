@@ -87,7 +87,6 @@ public class Test_Comment_In_Navi_Drawer {//extends ApplicationTestCase<Applicat
             e.printStackTrace();
         }
     }
-
     @Test
     public void submit() {
         onView(withId(R.id.song_list_container)).check(matches(isDisplayed()));
@@ -99,22 +98,59 @@ public class Test_Comment_In_Navi_Drawer {//extends ApplicationTestCase<Applicat
                 .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
         pauseTestFor(1000);
         onView(withId(R.id.todoText)).check(matches(withText("")));
-
         pauseTestFor(1000);
         testPressKeys1();
         onView(withId(R.id.addButton))
                 .check(matches(withText(R.string.submit))).perform(click());
         pauseTestFor(3000);
-
         testPressKeys2();
         onView(withId(R.id.addButton))
                 .check(matches(withText(R.string.submit))).perform(click());
         pauseTestFor(5000);
-
         onData(anything()).inAdapterView(withId(R.id.listView)).atPosition(0).perform(click());
         pauseTestFor(5000);
         onData(anything()).inAdapterView(withId(R.id.listView)).atPosition(0).perform(click());
-
+    }
+    private void testPressKeys1(){
+        onView(withId(R.id.todoText)).perform(clearText(), pressKey(KeyEvent.KEYCODE_T));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_H));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_I));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_S));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_I));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_S));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_A));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_F));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_U));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_N));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_A));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_P));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_P));
+        pauseTestFor(100);
+        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_PERIOD));
+        pauseTestFor(1000);
+        onView(withId(R.id.todoText)).perform(replaceText("this is a fun app." + music_note),
+                pressKey(KeyEvent.KEYCODE_MOVE_END));
+        pauseTestFor(5000);
     }
     private void testPressKeys2(){
         onView(withId(R.id.todoText)).perform(clearText(), pressKey(KeyEvent.KEYCODE_I));
@@ -164,45 +200,5 @@ public class Test_Comment_In_Navi_Drawer {//extends ApplicationTestCase<Applicat
         pauseTestFor(5000);
     }
 
-    private void testPressKeys1(){
-        onView(withId(R.id.todoText)).perform(clearText(), pressKey(KeyEvent.KEYCODE_T));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_H));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_I));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_S));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_I));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_S));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_A));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_F));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_U));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_N));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_SPACE));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_A));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_P));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_P));
-        pauseTestFor(100);
-        onView(withId(R.id.todoText)).perform(typeText(""), pressKey(KeyEvent.KEYCODE_PERIOD));
-        pauseTestFor(1000);
-        onView(withId(R.id.todoText)).perform(replaceText("this is a fun app." + music_note),
-                pressKey(KeyEvent.KEYCODE_MOVE_END));
-        pauseTestFor(5000);
-    }
+
 }

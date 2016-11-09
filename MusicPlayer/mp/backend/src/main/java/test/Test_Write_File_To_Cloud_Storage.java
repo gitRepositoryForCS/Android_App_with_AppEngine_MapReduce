@@ -31,12 +31,12 @@ public class Test_Write_File_To_Cloud_Storage {
   @org.testng.annotations.Test
     public static void testWriteChannel()  {
         GcsService gcsService = GcsServiceFactory.createGcsService();
-        GcsFilename file = new GcsFilename(Constants.BUCKETNAME, Constants.INPUTFILE);
+        GcsFilename file = new GcsFilename(Test_Constants.BUCKETNAME, Test_Constants.INPUTFILE);
 
       GcsOutputChannel writeChannel = null;
       try {
           writeChannel = gcsService.createOrReplace(file,
-                  new GcsFileOptions.Builder().mimeType(Constants.MIMETYPE).build());
+                  new GcsFileOptions.Builder().mimeType(Test_Constants.MIMETYPE).build());
       } catch (IOException e) {
           Assert.fail();
       }
@@ -49,7 +49,7 @@ public class Test_Write_File_To_Cloud_Storage {
           Assert.fail();
       }
 
-      assertThat(Constants.BUCKETNAME, is(fn));
+      assertThat(Test_Constants.BUCKETNAME, is(fn));
     }
 
 }

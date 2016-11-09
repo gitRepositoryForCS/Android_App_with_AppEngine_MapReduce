@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import yingchen.cs.musicplayer.visualizer.Concepts.Artist;
 import yingchen.cs.musicplayer.visualizer.Concepts.Data;
 import yingchen.cs.musicplayer.visualizer.Concepts.Song;
 import yingchen.cs.musicplayer.visualizer.Concepts.SongList;
-import android.widget.Toast;
+
 /*
 *
 * */
@@ -74,10 +72,10 @@ public class SongsFragment extends Fragment {
         Log.i("SongsFragment: ", "onActivityCreated!!!");
         Bundle bundle = getArguments();
         if(bundle==null)  return;
-        mDiscoverResult = bundle.getString(MainActivity.DISCOVER_RESULT);
+        mDiscoverResult = bundle.getString(FrontendConstant.DISCOVER_RESULT);
         songView = (ListView)getActivity().findViewById(R.id.music_list_view);
         data = new ArrayList<Data>();
-        songListForParcelable = bundle.getParcelable(MainActivity.SONGS_FOR_PARCELABLE);
+        songListForParcelable = bundle.getParcelable(FrontendConstant.SONGS_FOR_PARCELABLE);
         songList = (ArrayList<Song>) songListForParcelable;
         if(songList == null) songList = new ArrayList<>();
 
@@ -95,10 +93,10 @@ public class SongsFragment extends Fragment {
         }
         Log.i("songsFragement", "after return ");
         //when other items are clicked.
-        positionInNavigation = bundle.getInt(MainActivity.POSITION_IN_NAVI_DRAWER);
-        mLevel = bundle.getInt(MainActivity.LEVEL);
-        text = bundle.getString(MainActivity.TEXT);
-        positionClicked = bundle.getInt(MainActivity.POSITION_CLICKED);
+        positionInNavigation = bundle.getInt(FrontendConstant.POSITION_IN_NAVI_DRAWER);
+        mLevel = bundle.getInt(FrontendConstant.LEVEL);
+        text = bundle.getString(FrontendConstant.TEXT);
+        positionClicked = bundle.getInt(FrontendConstant.POSITION_CLICKED);
         if(mLevel==0){
             if(positionInNavigation==2){
                 //oncreate
@@ -170,9 +168,9 @@ public class SongsFragment extends Fragment {
     private void playTheSong(ArrayList<Song> songList, int position){
         Intent i = new Intent();
         Bundle b = new Bundle();
-        b.putInt(MainActivity.POSITION_CLICKED,position);
+        b.putInt(FrontendConstant.POSITION_CLICKED,position);
         SongList songListForParcel = (SongList) songList;
-        b.putParcelable(MainActivity.SONGS_FOR_PARCELABLE, songListForParcel);
+        b.putParcelable(FrontendConstant.SONGS_FOR_PARCELABLE, songListForParcel);
         i.putExtras(b);
         i.setClass(getActivity(),PlaySongActivity.class);
        // i.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);

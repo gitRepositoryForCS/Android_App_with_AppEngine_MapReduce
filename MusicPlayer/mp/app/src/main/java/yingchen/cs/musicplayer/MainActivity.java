@@ -13,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,30 +31,15 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.List;
 
-import yingchen.cs.musicplayer.visualizer.Concepts.NamesInNavDrawer;
 import yingchen.cs.musicplayer.visualizer.Concepts.Song;
 import yingchen.cs.musicplayer.visualizer.Concepts.SongList;
 
 public class MainActivity extends ActionBarActivity implements
         NavigationDrawerFragment.ClickListener, SongsFragment.SongClickListener, FetchData.RunAfterExecute {
 
-    public static final String POSITION_IN_NAVI_DRAWER = "positionInNavigation";
-    public static final String LEVEL = "level";
-    public static final String TEXT = "text";
-    public static final String POSITION_CLICKED = "positionClicked";
-    public static final String SONGS_FOR_PARCELABLE = "songsForParcelable";
-    public static final String DISCOVER_RESULT ="discoverResult";
-
     private static final String TAG = "Main_Activity";
-    private static final String FIREBASE_PROJECT_ID = “your_firebase_project_id”;
-    private static final String PACKAGE_NAME = “your_cloud_storage_package_name”;
-    private static final String URL = “your_app_engine_url”;
 
     private Toolbar mToolbar;
     public NavigationDrawerFragment mDrawerFragment;
@@ -65,7 +49,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private  ListView mMusicListView;
 
-    private static final String BUCKET_NAME = “your_appengine_bucket_name”;
+    private static final String BUCKET_NAME = "plasma-system-145121.appspot.com";
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -73,6 +57,15 @@ public class MainActivity extends ActionBarActivity implements
      */
     private GoogleApiClient client;
 
+    public void setSongClicked(boolean b){
+        isSongClicked = b;
+    }
+    public boolean getSongClicked(){
+        return isSongClicked;
+    }
+    public void setGoogleApiClient(GoogleApiClient gac){
+        client = gac;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +88,7 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     /* prepare for starting firebase connection. */
-    private void startConnectFirebase() {
+    public void startConnectFirebase() {
         client.connect();    // for firebase.
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -107,11 +100,10 @@ public class MainActivity extends ActionBarActivity implements
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://"+PACKAGE_NAME+ "/http/host/path")
+                Uri.parse("android-app://"+ FrontendConstant.PACKAGE_NAME+ "/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -124,15 +116,21 @@ public class MainActivity extends ActionBarActivity implements
         super.onResume();
         //Log.i(TAG, "onResume!!!!!!! " + mSuggestionFlag);
         Bundle bundle = this.getIntent().getExtras();
-        if(mDrawerFragment.mSignedInState) mDrawerFragment.updateUI(false, true);
+        if(mDrawerFragment.getSignInState()) mDrawerFragment.getUserSignIn_Out().updateUI(false, true);
         initSongs(bundle);
     }
 
     /* init for the home screen.  */
-    private void initSongs(Bundle bundle) {
-        if (bundle != null && !isSongClicked) {
-            int position = Integer.parseInt(bundle.getString(POSITION_IN_NAVI_DRAWER));
-            addSongsFragmentLevelZero(position);
+    public void initSongs(Bundle bundle) {
+        if (bundle != null && !getSongClicked()) {
+            String str = bundle.getString(FrontendConstant.POSITION_IN_NAVI_DRAWER);
+            if(str != null ){
+                int position = Integer.parseInt(str);
+                addSongsFragmentLevelZero(position);
+            }else{
+                addSongsFragmentLevelZero(2);
+            }
+
         } else if (bundle != null) {
             getSupportFragmentManager().popBackStack();
         } else {
@@ -154,7 +152,7 @@ public class MainActivity extends ActionBarActivity implements
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://"+ PACKAGE_NAME + "/http/host/path")
+                Uri.parse("android-app://"+ FrontendConstant.PACKAGE_NAME + "/http/host/path")
         );
         if (client != null) {
             AppIndex.AppIndexApi.end(client, viewAction);
@@ -163,18 +161,18 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     /* init firebase for users to provide suggestions  */
-    private void firebaseInit(LinearLayout suggestionLayout) {
+    public void firebaseInit(LinearLayout suggestionLayout) {
 
         final ListView listView = (ListView) suggestionLayout.findViewById(R.id.listView);
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-        listView.setAdapter(adapter);
+        if(listView != null) listView.setAdapter(adapter);
 
         // Use Firebase to populate the list.
         Firebase.setAndroidContext(this);
         // The onChildAdded event is typically used when retrieving a list of items in the Firebase database.
         // the onChildAdded event is triggered once for each existing child
         // and then again every time a new child is added to the specified path
-        new Firebase(FIREBASE_PROJECT_ID)
+        new Firebase(FrontendConstant.FIREBASE_PROJECT_ID)
                 .addChildEventListener(new ChildEventListener() {
 
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -199,27 +197,31 @@ public class MainActivity extends ActionBarActivity implements
 
                 });
 
+
         // Add items via the Button and EditText at the bottom of the window.
         final EditText text = (EditText) suggestionLayout.findViewById(R.id.todoText);
         final Button button = (Button) suggestionLayout.findViewById(R.id.addButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        if(button != null)
+            button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new Firebase(FIREBASE_PROJECT_ID)
+                new Firebase(FrontendConstant.FIREBASE_PROJECT_ID)
                         .push()
-                        .child(MainActivity.TEXT)
+                        .child(FrontendConstant.TEXT)
                         .setValue(text.getText().toString());
                 text.setText("");
                 Toast.makeText(getApplicationContext(), "Comments sent successfully.", Toast.LENGTH_LONG).show();
 
             }
         });
+
         // Delete items when clicked
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        if(listView != null)
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                new Firebase(FIREBASE_PROJECT_ID)
-                        .orderByChild(MainActivity.TEXT)
+                new Firebase(FrontendConstant.FIREBASE_PROJECT_ID)
+                        .orderByChild(FrontendConstant.TEXT)
                         .equalTo((String) listView.getItemAtPosition(position))
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -240,18 +242,19 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     /*   */
-    private void addSongsFragmentLevelZero(int positionInNavigation) {
-
+    public void addSongsFragmentLevelZero(int positionInNavigation) {
         // when suggestion is clicked in navigation drawer
-        if (positionInNavigation == NavigationDrawerFragment.IS_SUGGESTION) {
+        if (positionInNavigation == FrontendConstant.IS_SUGGESTION) {
             LinearLayout  parent = (LinearLayout) findViewById (R.id.song_list_container);
             LinearLayout suggestionLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.suggestion_layout, parent, false);
-            firebaseInit(suggestionLayout);
+            if(suggestionLayout != null) firebaseInit(suggestionLayout);
             startConnectFirebase();
-            parent.removeAllViews();
-            parent.setBackgroundColor(Color.parseColor("#ffffff"));
-            parent.addView(suggestionLayout);
-        }else if(positionInNavigation == NavigationDrawerFragment.IS_DISCOVER){
+            if(parent != null){
+                parent.removeAllViews();
+                parent.setBackgroundColor(Color.parseColor("#ffffff"));
+                parent.addView(suggestionLayout);
+            }
+        }else if(positionInNavigation == FrontendConstant.IS_DISCOVER){
             fetchData(positionInNavigation);
         } else {
             replaceFragment(positionInNavigation,null);
@@ -262,7 +265,7 @@ public class MainActivity extends ActionBarActivity implements
     private String fetchData(int positionInNavigation){
         //String idToken = getIntent().getExtras().getString(NavigationDrawerFragment.IDTOKEN);
         FetchData fd = new FetchData(this,positionInNavigation);
-        fd.execute(new String[] {URL});
+        fd.execute(new String[] {FrontendConstant.URL});
         return fd.getResult();
     }
 
@@ -276,13 +279,13 @@ public class MainActivity extends ActionBarActivity implements
     // replace blank fragement with a new fragement depending on which position is clicked.
     public void replaceFragment(int positionInNavigation, String res){
         Log.i(TAG, "replaceFragment"+ positionInNavigation);
-        isSongClicked = false;
+        setSongClicked(false);
         mSongsFragment = new SongsFragment();
         mCurrentLevel = 0;
         Bundle bundle = new Bundle();
-        bundle.putInt(POSITION_IN_NAVI_DRAWER, positionInNavigation);
-        if(res != null)  bundle.putString(DISCOVER_RESULT, res);
-        bundle.putInt(LEVEL, mCurrentLevel);
+        bundle.putInt(FrontendConstant.POSITION_IN_NAVI_DRAWER, positionInNavigation);
+        if(res != null)  bundle.putString(FrontendConstant.DISCOVER_RESULT, res);
+        bundle.putInt(FrontendConstant.LEVEL, mCurrentLevel);
         mSongsFragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.song_list_container, mSongsFragment);
@@ -319,7 +322,7 @@ public class MainActivity extends ActionBarActivity implements
     //  listener. SongsFragment methods. handle the case when an item is clicked.
     @Override
     public void onSongClicked(View view, int positionInNavigation, int level, int positionClicked, ArrayList<Song> songList) {
-        isSongClicked = true;
+        setSongClicked(true);
         View v = view.findViewById(R.id.song_title);
         TextView textView = (TextView) v;
         String text = textView.getText().toString();
@@ -330,12 +333,12 @@ public class MainActivity extends ActionBarActivity implements
         mSongsFragment = new SongsFragment();
         mCurrentLevel = level;
         Bundle bundle = new Bundle();
-        bundle.putInt(LEVEL, level);
-        bundle.putString(TEXT, text);
-        bundle.putInt(POSITION_IN_NAVI_DRAWER, positionInNavigation);
-        bundle.putInt(POSITION_CLICKED, positionClicked);
+        bundle.putInt(FrontendConstant.LEVEL, level);
+        bundle.putString(FrontendConstant.TEXT, text);
+        bundle.putInt(FrontendConstant.POSITION_IN_NAVI_DRAWER, positionInNavigation);
+        bundle.putInt(FrontendConstant.POSITION_CLICKED, positionClicked);
         SongList songListForParcelable = (SongList) songList;
-        bundle.putParcelable(SONGS_FOR_PARCELABLE, songListForParcelable);
+        bundle.putParcelable(FrontendConstant.SONGS_FOR_PARCELABLE, songListForParcelable);
         mSongsFragment.setArguments(bundle);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.song_list_container, mSongsFragment);

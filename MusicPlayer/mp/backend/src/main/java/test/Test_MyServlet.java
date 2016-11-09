@@ -2,7 +2,6 @@ package test;
 
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebConversation;
-import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.httpunit.WebResponse;
 
@@ -35,7 +34,7 @@ public class Test_MyServlet {
     public void test_doGet() throws Exception {
 
         WebConversation conversation = new WebConversation();
-        WebRequest request = new GetMethodWebRequest(Constants.LOCAL_URL);
+        WebRequest request = new GetMethodWebRequest(Test_Constants.LOCAL_URL);
         WebResponse response = conversation.getResponse( request );
 
         assertEquals(outputResult,  response.getText() );

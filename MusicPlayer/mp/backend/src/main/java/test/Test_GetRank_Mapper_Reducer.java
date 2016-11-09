@@ -1,6 +1,5 @@
 package test;
 
-
 import junit.framework.Assert;
 
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class Test_GetRank_Mapper_Reducer {
         String s = "3.0,n1";
         if(s == null || s.trim().length() ==0) Assert.fail();
 
-        String[] arr = s.split(String.valueOf(Constants.SEPERATOR));
+        String[] arr = s.split(String.valueOf(Test_Constants.SEPERATOR));
         if(arr.length < 2)  return;
         if(arr[0].trim().length() == 0 || arr[1].trim().length() == 0) Assert.fail();
 
@@ -46,13 +45,13 @@ public class Test_GetRank_Mapper_Reducer {
 
         while (values.hasNext()) {
             try {
-                sb.append(values.next() + Constants.OUTPUT_SEPERATOR);
+                sb.append(values.next() + Test_Constants.OUTPUT_SEPERATOR);
             } catch(Exception e){
                 Assert.fail();
             }
         }
         sb.setLength(sb.length()-2);
-        String result = key + Constants.OUTPUT_SEPERATOR + sb.toString()+"\r\n";
+        String result = key + Test_Constants.OUTPUT_SEPERATOR + sb.toString()+"\r\n";
         assertThat(result, is("3.0, n1, n2\r\n"));
     }
 

@@ -1,4 +1,5 @@
 package yingchen.cs.musicplayer;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -48,15 +49,18 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         player.setOnCompletionListener(this);
         player.setOnErrorListener(this);
     }
+
     public void setList(ArrayList<Song> theSongs){
         songs=theSongs;
     }
+
     public class MusicBinder extends Binder {
         MusicService getService()
         {
             return MusicService.this;
         }
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         return musicBind;

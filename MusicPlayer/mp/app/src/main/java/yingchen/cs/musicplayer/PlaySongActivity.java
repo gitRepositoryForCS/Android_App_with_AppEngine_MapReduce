@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.MediaController;
 
 import java.util.ArrayList;
@@ -102,12 +101,12 @@ public class PlaySongActivity extends ActionBarActivity implements MediaControll
             startService(playIntent);
         }
         Intent i = this.getIntent();
-        mSongList =   this.getIntent().getParcelableExtra(MainActivity.SONGS_FOR_PARCELABLE);
+        mSongList =   this.getIntent().getParcelableExtra(FrontendConstant.SONGS_FOR_PARCELABLE);
         songList = (ArrayList<Song>) mSongList;
 
       //  songList=new ArrayList<Song>();
         Bundle b = this.getIntent().getExtras();
-        position = b.getInt(MainActivity.POSITION_CLICKED);
+        position = b.getInt(FrontendConstant.POSITION_CLICKED);
     }
 
   @Override

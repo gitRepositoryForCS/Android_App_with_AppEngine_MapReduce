@@ -24,6 +24,8 @@ public class Test_GetSum_Mapper_Reducer {
 
     @org.testng.annotations.Test
     public void testGetSumMapper() {
+
+        com.example.yingchen.myapplication.backend.GetHotnessSumMapper gsm = new com.example.yingchen.myapplication.backend.GetHotnessSumMapper();
         String val = "id\t44, name\tn1,\thotness\t1, loudness\t0.9";
         matcher_Hotness = pattern_Hotness.matcher(val.toLowerCase());
         matcher_Name = pattern_name.matcher(val.toLowerCase());
@@ -57,7 +59,7 @@ public class Test_GetSum_Mapper_Reducer {
         while (values.hasNext()) {
             total += values.next();
         }
-        String result = String.valueOf(total) + Constants.SEPERATOR + key + "\r\n";
+        String result = String.valueOf(total) + Test_Constants.SEPERATOR + key + "\r\n";
         assertThat(result, is("3.0" + "," + "n1" + "\r\n"));
     }
 

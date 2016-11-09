@@ -28,7 +28,7 @@ public class Test_Read_File_From_Cloud_Storage {
     @org.testng.annotations.Test
     public void test_Testing_Framework() {
 
-        GcsFilename fileName = new GcsFilename(Constants.BUCKETNAME, Constants.FILE_FOR_TESTING);
+        GcsFilename fileName = new GcsFilename(Test_Constants.BUCKETNAME, Test_Constants.FILE_FOR_TESTING);
         GcsService gcsService = GcsServiceFactory.createGcsService();
 
         GcsInputChannel channel = gcsService.openPrefetchingReadChannel(fileName, 0, 5000);
