@@ -1,10 +1,10 @@
-# Android_app_music_player 
+# Music player app for Android
 
-The music player application with visualizations is designed, implemented, and tested on Android cell phones and tablets. The major features include flexible navigations, various visualizations, and common music controlling functionalities, such as play, pause, fast forward, fast rewind, play next, play previous, etc. 
-
-The major work backend server does is to provide recommendation data for the app. It uses chaining mapreduce jobs to filter large data and save it on cloud storage. Android app clients get the data through http requests. 
-
-(Support Android 4-7, API level 18-24)
+A music player mobile application for Android (Android 4-7, API level 18-24) is developed along with cloud server using Google’s App Engine and Firebase. This music player application provides various ways of navigating to an audio file and different music visualizer options. Other than that, it also provides three features: 
+1. user sign in and sign out, 
+2. display the most popular songs based on input, 
+3. users can submit comments and suggestions. 
+These features are implemented by utilizing cloud services of Google’s App Engine and Firebase. Specifically, an application running on App Engine plays as a server’s role to verify user sign in. It also runs App Engine MapReduce jobs to consume large data stored in Google Cloud Storage and serves relatively small result about popular songs for the app. In addition, user’s comments and suggestions are automatically synchronized with Firebase which makes modifying and analyzing synchronized data really convenient.
 
 To run the whole project, there are several accounts needed: 
 - google account <br />
